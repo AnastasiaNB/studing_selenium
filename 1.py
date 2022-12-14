@@ -4,6 +4,7 @@ from selenium.webdriver import Edge
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.edge.options import Options as EdgeOptions
+import time 
 
 options = EdgeOptions()
 options.add_experimental_option('excludeSwitches', ['enable-logging'])
@@ -16,7 +17,10 @@ for key in data.keys():
     driver.find_element(By.NAME, f'{key}').click()
     driver.find_element(By.NAME, f'{key}').clear()
     driver.find_element(By.NAME, f'{key}').send_keys(data[key])
-WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.CLASS_NAME, 'zhplzA TW_Q0E zP2XPk M50fgr'))).click()
+time.sleep(2)
+driver.find_element(By.CSS_SELECTOR, '.zhplzA.TW_Q0E.zP2XPk.M50fgr').click()
+# driver.switch_to(driver.window_handles[1])
+# print(help(driver))
 # <button type="submit" class="zhplzA TW_Q0E zP2XPk M50fgr"><span class="sXdASz"><span class="AuEX2H">Записаться</span></span><div class="v5Rdd4 JX7z9X"><svg class="vNdVC3 d27STn"><use xlink:href="#loader"></use></svg></div></button>
 # <div class="Fkj7oZ ThvYXi f1y1sl"><input type="text" name="day" placeholder="День" class="P8KZKM" value=""><input type="text" name="month" placeholder="Месяц" class="P8KZKM" value=""><input type="text" name="year" placeholder="Год" class="P8KZKM" value=""></div>
 

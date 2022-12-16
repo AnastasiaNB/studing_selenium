@@ -1,4 +1,4 @@
-from bs4 import BeautifulSoup as bs
+from bs4 import BeautifulSoup 
 from selenium.webdriver.common.by import By
 from selenium.webdriver import Edge
 from selenium.webdriver.support.wait import WebDriverWait
@@ -17,8 +17,10 @@ for key in data.keys():
     driver.find_element(By.NAME, f'{key}').click()
     driver.find_element(By.NAME, f'{key}').clear()
     driver.find_element(By.NAME, f'{key}').send_keys(data[key])
-time.sleep(2)
 driver.find_element(By.CSS_SELECTOR, '.zhplzA.TW_Q0E.zP2XPk.M50fgr').click()
+page = driver.execute_script("return document.body.innerHTML;")
+bs = BeautifulSoup(page, 'html.parser')
+print(bs)
 # driver.switch_to(driver.window_handles[1])
 # print(help(driver))
 # <button type="submit" class="zhplzA TW_Q0E zP2XPk M50fgr"><span class="sXdASz"><span class="AuEX2H">Записаться</span></span><div class="v5Rdd4 JX7z9X"><svg class="vNdVC3 d27STn"><use xlink:href="#loader"></use></svg></div></button>
